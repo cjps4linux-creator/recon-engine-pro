@@ -5,6 +5,29 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- **`pymupdf` replaced with `pypdfium2`.** This application loads
+  `corp-recon-engine` at runtime, and that engine previously imported
+  PyMuPDF (AGPL-3.0) while both repositories were published under MIT.
+  The engine now uses `pypdfium2`, so the manifest here matches what is
+  actually loaded. The dependency table re-derived from PyPI metadata now
+  contains no strong-copyleft dependency.
+
+### Added
+
+- **Licence gate.** `tests/test_licence_audit.py` fails the build when a
+  strong-copyleft dependency is declared or imported, and when a
+  weak-copyleft dependency's licence notice is missing. It also asserts
+  that the licence of the sibling engine this application loads at
+  runtime is compatible with this repository's own.
+- **`THIRD_PARTY_NOTICES.md`.** The notice that `fpdf2` (LGPL-3.0-only)
+  requires now travels with the software.
+- **`licence-check` CI job.** The licence gate runs on every push and on
+  every pull request, and is a required status check.
+
 ## [2.0.0] — 2026-10-20
 
 ### Added

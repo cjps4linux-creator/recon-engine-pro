@@ -20,4 +20,4 @@ gradio>=4.0
 pandas>=2.0
 fpdf2>=2.7
 pytesseract>=0.3.10
-pymupdf>=1.24.0
+pypdfium2>=4.30.0

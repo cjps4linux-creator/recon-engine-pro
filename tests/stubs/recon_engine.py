@@ -17,7 +17,7 @@ asserts. When the real engine *is* present it always wins, because
 ``backend/main.py`` puts the sibling checkout at the front of ``sys.path``.
 
 Only the standard library is used, so importing it is fast and needs none of
-the engine's heavier runtime dependencies (pandas, gradio, pymupdf, ...).
+the engine's heavier runtime dependencies (pandas, gradio, pypdfium2, ...).
 """
 
 from __future__ import annotations
