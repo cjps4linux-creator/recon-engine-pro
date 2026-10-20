@@ -55,3 +55,23 @@ jobs:
         # toolchain version that has drifted from the validated pins.
         # See scripts/pin_guard.py.
         run: python scripts/pin_guard.py .
+
+  licence-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install test dependencies
+        run: pip install pytest==8.3.3
+      - name: Check dependency licences
+        # Fails the build if a strong-copyleft dependency is declared or
+        # imported in a repository published under a permissive licence.
+        # See tests/test_licence_audit.py and ADR-014.
+        # --no-cov: this job runs a SUBSET of the suite, so the
+        # whole-project coverage floor would fail it for a reason
+        # that has nothing to do with the licence gate. The full
+        # suite runs in the `test` job, which is where the
+        # coverage ratchet is enforced.
+        run: pytest -q --no-header --no-cov tests/test_licence_audit.py
