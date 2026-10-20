@@ -6,7 +6,6 @@ Starts the FastAPI backend and opens the PyWebView desktop window.
 """
 import os
 import sys
-import threading
 import time
 import subprocess
 try:

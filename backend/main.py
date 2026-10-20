@@ -4,17 +4,16 @@ Recon Engine Pro - FastAPI Backend
 Wraps the existing corp-recon-engine and exposes a REST API
 for the desktop frontend.
 """
-import os
 import sys
 import json
 import sqlite3
 import uuid
 from pathlib import Path
 from datetime import datetime
-from typing import Optional, Dict, Any, List
+from typing import Optional, List
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
