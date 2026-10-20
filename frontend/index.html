@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Recon Engine Pro</title>
+<style>
+/* ============================================================
+   RECON ENGINE PRO — Kimi3 / Fable5 Dark Luxury Theme
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --navy-900: #0a1628;
+  --navy-800: #1B365D;
+  --navy-700: #1e3a5f;
+  --navy-600: #2d4a7a;
+  --navy-500: #3b5998;
+  --gold: #C5A059;
+  --gold-dim: #a68a4e;
+  --gold-glow: rgba(197, 160, 89, 0.15);
+  --white: #FFFFFF;
+  --gray-50: #F9FAFB;
+  --gray-100: #F3F4F6;
+  --gray-200: #E5E7EB;
+  --gray-300: #D1D5DB;
+  --gray-400: #9CA3AF;
+  --gray-500: #6B7280;
+  --gray-600: #4B5563;
+  --gray-700: #374151;
+  --gray-800: #1F2937;
+  --gray-900: #111827;
+  --green: #10B981;
+  --green-bg: rgba(16, 185, 129, 0.12);
+  --amber: #F59E0B;
+  --amber-bg: rgba(245, 158, 11, 0.12);
+  --red: #EF4444;
+  --red-bg: rgba(239, 68, 68, 0.12);
+  --blue: #3B82F6;
+  --blue-bg: rgba(59, 130, 246, 0.12);
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  background: var(--navy-900);
+  color: var(--gray-100);
+  font-family: var(--font);
+  font-size: 13px;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+#app {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 200px;
+  min-width: 200px;
+  background: var(--navy-800);
+  border-right: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.sidebar-brand {
+  padding: 18px 16px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.sidebar-brand h1 {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebar-brand h1::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--gold);
+}
+
+.sidebar-brand .version {
+  font-size: 10px;
+  color: var(--gray-400);
+  font-weight: 400;
+  margin-top: 2px;
+  margin-left: 16px;
+}
+
+.nav-items {
+  padding: 8px 0;
+  flex: 1;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  cursor: pointer;
+  color: var(--gray-400);
+  font-size: 12.5px;
+  font-weight: 500;
+  border-left: 2px solid transparent;
+  transition: all 0.15s;
+  user-select: none;
+}
+
+.nav-item:hover {
+  color: var(--gray-100);
+  background: rgba(255,255,255,0.04);
+}
+
+.nav-item.active {
+  color: var(--white);
+  background: var(--gold-glow);
+  border-left-color: var(--gold);
+}
+
+.nav-item .icon {
+  width: 18px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.sidebar-footer {
+  padding: 12px 16px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.sidebar-footer .status {
+  font-size: 10.5px;
+  color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--green);
+}
+
+/* MAIN CONTENT */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.header {
+  height: 44px;
+  min-height: 44px;
+  background: var(--navy-800);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.header-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-300);
+  letter-spacing: 0.3px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  scroll-behavior: smooth;
+}
+
+.content::-webkit-scrollbar {
+  width: 6px;
+}
+.content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.content::-webkit-scrollbar-thumb {
+  background: var(--navy-600);
+  border-radius: 3px;
+}
+
+/* ============================================================
+   METRICS ROW
+   ============================================================ */
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.metric-card {
+  background: var(--navy-800);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+.metric-card.green::before { background: var(--green); }
+.metric-card.amber::before { background: var(--amber); }
+.metric-card.red::before { background: var(--red); }
+.metric-card.blue::before { background: var(--blue); }
+
+.metric-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--gray-500);
+  margin-bottom: 6px;
+}
+
+.metric-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+}
+
+.metric-card.green .metric-value { color: var(--green); }
+.metric-card.amber .metric-value { color: var(--amber); }
+.metric-card.red .metric-value { color: var(--red); }
+.metric-card.blue .metric-value { color: var(--blue); }
+
+.metric-sub {
+  font-size: 10px;
+  color: var(--gray-500);
+  margin-top: 4px;
+}
+
+/* ============================================================
+   DROP ZONES
+   ============================================================ */
+.upload-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.drop-zone {
+  border: 2px dashed rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 32px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: rgba(255,255,255,0.02);
+  position: relative;
+  overflow: hidden;
+}
+
+.drop-zone:hover {
+  border-color: var(--gold-dim);
+  background: var(--gold-glow);
+}
+
+.drop-zone.dragover {
+  border-color: var(--gold);
+  background: var(--gold-glow);
+  transform: scale(1.01);
+}
+
+.drop-zone.has-file {
+  border-color: var(--green);
+  border-style: solid;
+  background: var(--green-bg);
+}
+
+.drop-zone-icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+  opacity: 0.6;
+}
+
+.drop-zone-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-300);
+  margin-bottom: 4px;
+}
+
+.drop-zone-hint {
+  font-size: 10.5px;
+  color: var(--gray-500);
+}
+
+.drop-zone-file {
+  margin-top: 10px;
+  font-size: 11px;
+  color: var(--green);
+  font-weight: 500;
+}
+
+/* ============================================================
+   CONTROLS
+   ============================================================ */
+.controls-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  background: var(--navy-800);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius);
+}
+
+.slider-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.slider-group label {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 60px;
+}
+
+.slider-group input[type="range"] {
+  width: 100px;
+  accent-color: var(--gold);
+}
+
+.slider-group .slider-value {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold);
+  min-width: 36px;
+  text-align: right;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s;
+  font-family: var(--font);
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--navy-900);
+  margin-left: auto;
+}
+
+.btn-primary:hover {
+  background: var(--gold-dim);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.08);
+  color: var(--gray-300);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.12);
+  color: var(--white);
+}
+
+.btn-danger {
+  background: var(--red-bg);
+  color: var(--red);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.btn-danger:hover {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.btn-sm {
+  padding: 5px 12px;
+  font-size: 10.5px;
+}
+
+/* ============================================================
+   RESULTS
+   ============================================================ */
+.results-panel {
+  background: var(--navy-800);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.results-header h3 {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-300);
+}
+
+.results-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.tab {
+  padding: 8px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-500);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+  user-select: none;
+}
+
+.tab:hover {
+  color: var(--gray-300);
+}
+
+.tab.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+.tab .count {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 10px;
+  margin-left: 4px;
+  font-weight: 700;
+}
+
+.tab .count.green { background: var(--green-bg); color: var(--green); }
+.tab .count.amber { background: var(--amber-bg); color: var(--amber); }
+.tab .count.red { background: var(--red-bg); color: var(--red); }
+
+.tab-content {
+  padding: 0;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.tab-content::-webkit-scrollbar {
+  width: 5px;
+}
+.tab-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.tab-content::-webkit-scrollbar-thumb {
+  background: var(--navy-600);
+  border-radius: 3px;
+}
+
+/* TABLE */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11.5px;
+}
+
+.data-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.data-table th {
+  background: var(--navy-700);
+  color: var(--gray-400);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 9.5px;
+  letter-spacing: 0.8px;
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.data-table th:hover {
+  color: var(--gray-200);
+}
+
+.data-table th .sort-arrow {
+  margin-left: 4px;
+  opacity: 0.4;
+  font-size: 10px;
+}
+
+.data-table th.sorted .sort-arrow {
+  opacity: 1;
+  color: var(--gold);
+}
+
+.data-table td {
+  padding: 7px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  color: var(--gray-300);
+  white-space: nowrap;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.data-table tr:hover td {
+  background: rgba(255,255,255,0.02);
+}
+
+.data-table .amount {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.data-table .score {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.score-high { color: var(--green); }
+.score-mid { color: var(--amber); }
+.score-low { color: var(--red); }
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.badge-matched {
+  background: var(--green-bg);
+  color: var(--green);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.badge-unmatched {
+  background: var(--amber-bg);
+  color: var(--amber);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.badge-error {
+  background: var(--red-bg);
+  color: var(--red);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+/* ============================================================
+   HISTORY
+   ============================================================ */
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.history-item:hover {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.08);
+}
+
+.history-item .h-date {
+  font-size: 10px;
+  color: var(--gray-500);
+  min-width: 90px;
+}
+
+.history-item .h-files {
+  flex: 1;
+  font-size: 11px;
+  color: var(--gray-300);
+}
+
+.history-item .h-metrics {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.history-item .h-rate {
+  font-size: 13px;
+  font-weight: 700;
+  min-width: 40px;
+  text-align: right;
+}
+
+.history-item .h-actions {
+  display: flex;
+  gap: 4px;
+}
+
+/* ============================================================
+   SETTINGS
+   ============================================================ */
+.settings-section {
+  max-width: 600px;
+}
+
+.settings-group {
+  margin-bottom: 24px;
+}
+
+.settings-group h3 {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-300);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.setting-row .setting-label {
+  font-size: 12px;
+  color: var(--gray-300);
+}
+
+.setting-row .setting-value {
+  font-size: 12px;
+  color: var(--gray-500);
+}
+
+.toggle {
+  width: 36px;
+  height: 20px;
+  background: var(--navy-600);
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.toggle.on {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.toggle::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: var(--white);
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: all 0.2s;
+}
+
+.toggle.on::after {
+  left: 18px;
+}
+
+/* ============================================================
+   PROGRESS / LOADING
+   ============================================================ */
+.processing-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 22, 40, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(4px);
+}
+
+.processing-box {
+  text-align: center;
+  padding: 40px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--navy-600);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.processing-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-300);
+}
+
+.processing-sub {
+  font-size: 11px;
+  color: var(--gray-500);
+  margin-top: 4px;
+}
+
+/* ============================================================
+   EMPTY STATES
+   ============================================================ */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--gray-500);
+}
+
+.empty-state .icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+  opacity: 0.3;
+}
+
+.empty-state h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-400);
+  margin-bottom: 4px;
+}
+
+.empty-state p {
+  font-size: 11px;
+  color: var(--gray-500);
+}
+
+/* ============================================================
+   SCROLLBAR (global)
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--navy-600);
+  border-radius: 3px;
+}
+
+/* ============================================================
+   RESPONSIVE (within desktop window)
+   ============================================================ */
+@media (max-width: 900px) {
+  .sidebar { width: 56px; min-width: 56px; }
+  .sidebar-brand h1 span { display: none; }
+  .sidebar-brand .version { display: none; }
+  .nav-item span { display: none; }
+  .nav-item { justify-content: center; padding: 12px; }
+  .sidebar-footer .status span { display: none; }
+  .metrics-row { grid-template-columns: repeat(2, 1fr); }
+}
+
+.hidden { display: none !important; }
+</style>
+</head>
+<body>
+<div id="app">
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="sidebar-brand">
+      <h1><span>RECON ENGINE</span></h1>
+      <div class="version">v2.0.0 Pro</div>
+    </div>
+    <div class="nav-items">
+      <div class="nav-item active" data-page="dashboard">
+        <span class="icon">◉</span><span>Dashboard</span>
+      </div>
+      <div class="nav-item" data-page="new-recon">
+        <span class="icon">▶</span><span>New Recon</span>
+      </div>
+      <div class="nav-item" data-page="history">
+        <span class="icon">☰</span><span>History</span>
+      </div>
+      <div class="nav-item" data-page="settings">
+        <span class="icon">⚙</span><span>Settings</span>
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="status">
+        <span class="status-dot"></span>
+        <span>Engine Ready</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <div class="main">
+    <header class="header">
+      <div class="header-title" id="page-title">Dashboard</div>
+      <div class="header-actions">
+        <button class="btn btn-sm btn-secondary" id="theme-toggle" title="Toggle density">◐</button>
+      </div>
+    </header>
+
+    <div class="content" id="content">
+      <!-- PAGES injected here -->
+    </div>
+  </div>
+</div>
+
+<!-- Processing overlay (hidden) -->
+<div class="processing-overlay hidden" id="processing-overlay">
+  <div class="processing-box">
+    <div class="spinner"></div>
+    <div class="processing-text" id="processing-text">Processing…</div>
+    <div class="processing-sub" id="processing-sub">Please wait</div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// API LAYER
+// ============================================================
+const API = 'http://127.0.0.1:8765';
+
+async function api(url, options = {}) {
+  const res = await fetch(`${API}${url}`, {
+    headers: { 'Content-Type': 'application/json' },
+    ...options
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ detail: res.statusText }));
+    throw new Error(err.detail || res.statusText);
+  }
+  return res.json();
+}
+
+// ============================================================
+// STATE
+// ============================================================
+let currentPage = 'dashboard';
+let bankFile = null;
+let invoiceFile = null;
+let currentResults = null;
+let currentSessionId = null;
+let sortColumn = 'match_score';
+let sortDirection = 'desc';
+let activeTab = 'matched';
+let sessions = [];
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    item.classList.add('active');
+    currentPage = item.dataset.page;
+    document.getElementById('page-title').textContent =
+      item.querySelector('span:last-child').textContent;
+    renderPage();
+  });
+});
+
+function renderPage() {
+  const content = document.getElementById('content');
+  switch (currentPage) {
+    case 'dashboard': renderDashboard(content); break;
+    case 'new-recon': renderNewRecon(content); break;
+    case 'history': renderHistory(content); break;
+    case 'settings': renderSettings(content); break;
+  }
+}
+
+// ============================================================
+// DASHBOARD
+// ============================================================
+async function renderDashboard(container) {
+  try {
+    sessions = await api('/api/sessions');
+  } catch (e) {
+    sessions = [];
+  }
+
+  const total = sessions.length;
+  const avgRate = total > 0
+    ? (sessions.reduce((sum, s) => sum + s.match_rate, 0) / total).toFixed(1)
+    : 0;
+  const totalMatched = sessions.reduce((sum, s) => sum + s.matched_count, 0);
+  const totalUnmatched = sessions.reduce((sum, s) => sum + s.unmatched_bank + s.unmatched_inv, 0);
+
+  container.innerHTML = `
+    <div class="metrics-row">
+      <div class="metric-card green">
+        <div class="metric-label">Match Rate</div>
+        <div class="metric-value">${avgRate}%</div>
+        <div class="metric-sub">Average across ${total} sessions</div>
+      </div>
+      <div class="metric-card blue">
+        <div class="metric-label">Sessions</div>
+        <div class="metric-value">${total}</div>
+        <div class="metric-sub">Total reconciliations</div>
+      </div>
+      <div class="metric-card green">
+        <div class="metric-label">Matched</div>
+        <div class="metric-value">${totalMatched}</div>
+        <div class="metric-sub">Total matched items</div>
+      </div>
+      <div class="metric-card amber">
+        <div class="metric-label">Unmatched</div>
+        <div class="metric-value">${totalUnmatched}</div>
+        <div class="metric-sub">Needs review</div>
+      </div>
+    </div>
+
+    <div class="results-panel">
+      <div class="results-header">
+        <h3>Recent Sessions</h3>
+        <div class="results-actions">
+          <button class="btn btn-sm btn-primary" onclick="navigateTo('new-recon')">+ New Recon</button>
+        </div>
+      </div>
+      <div class="tab-content" style="max-height: 500px;">
+        ${sessions.length === 0 ? `
+          <div class="empty-state">
+            <div class="icon">◉</div>
+            <h3>No sessions yet</h3>
+            <p>Run your first reconciliation to see results here</p>
+          </div>
+        ` : `
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Bank File</th>
+                <th>Invoice File</th>
+                <th>Matched</th>
+                <th>Unmatched</th>
+                <th>Match Rate</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${sessions.slice(0, 20).map(s => `
+                <tr>
+                  <td>${formatDate(s.created_at)}</td>
+                  <td>${escapeHtml(s.bank_file)}</td>
+                  <td>${escapeHtml(s.invoice_file)}</td>
+                  <td>${s.matched_count}</td>
+                  <td>${s.unmatched_bank + s.unmatched_inv}</td>
+                  <td><span class="score ${rateClass(s.match_rate)}">${s.match_rate}%</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-secondary" onclick="viewSession('${s.id}')">View</button>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `}
+      </div>
+    </div>
+  `;
+}
+
+// ============================================================
+// NEW RECONCILIATION
+// ============================================================
+function renderNewRecon(container) {
+  container.innerHTML = `
+    <div class="upload-grid">
+      <div class="drop-zone" id="bank-drop">
+        <div class="drop-zone-icon">🏦</div>
+        <div class="drop-zone-label">Bank Statement</div>
+        <div class="drop-zone-hint">CSV, XLSX, or PDF</div>
+        <div class="drop-zone-file hidden" id="bank-file-name"></div>
+        <input type="file" id="bank-input" accept=".csv,.xlsx,.xls,.pdf" style="display:none">
+      </div>
+      <div class="drop-zone" id="invoice-drop">
+        <div class="drop-zone-icon">📄</div>
+        <div class="drop-zone-label">Invoice File</div>
+        <div class="drop-zone-hint">CSV, XLSX, or PDF</div>
+        <div class="drop-zone-file hidden" id="invoice-file-name"></div>
+        <input type="file" id="invoice-input" accept=".csv,.xlsx,.xls,.pdf" style="display:none">
+      </div>
+    </div>
+
+    <div class="controls-bar">
+      <div class="slider-group">
+        <label>Threshold</label>
+        <input type="range" id="threshold" min="50" max="100" value="75">
+        <span class="slider-value" id="threshold-val">75%</span>
+      </div>
+      <div class="slider-group">
+        <label>Tolerance</label>
+        <input type="range" id="tolerance" min="0" max="20" value="5" step="0.5">
+        <span class="slider-value" id="tolerance-val">5%</span>
+      </div>
+      <button class="btn btn-primary" id="run-btn" disabled>
+        ▶ Run Reconciliation
+      </button>
+    </div>
+
+    <div class="results-panel hidden" id="results-panel">
+      <div class="results-header">
+        <h3 id="results-title">Results</h3>
+        <div class="results-actions">
+          <button class="btn btn-sm btn-secondary" onclick="downloadCSV()">📊 CSV</button>
+          <button class="btn btn-sm btn-secondary" onclick="downloadPDF()">📄 PDF</button>
+          <button class="btn btn-sm btn-danger" onclick="clearResults()">✕ Clear</button>
+        </div>
+      </div>
+      <div class="tabs">
+        <div class="tab active" data-tab="matched" onclick="switchTab('matched')">
+          Matched <span class="count green" id="count-matched">0</span>
+        </div>
+        <div class="tab" data-tab="unmatched-bank" onclick="switchTab('unmatched-bank')">
+          Unmatched Bank <span class="count amber" id="count-ubank">0</span>
+        </div>
+        <div class="tab" data-tab="unmatched-inv" onclick="switchTab('unmatched-invoices')">
+          Unmatched Invoices <span class="count red" id="count-uinv">0</span>
+        </div>
+      </div>
+      <div class="tab-content" id="results-body"></div>
+    </div>
+  `;
+
+  setupDropZone('bank-drop', 'bank-input', 'bank-file-name', file => { bankFile = file; });
+  setupDropZone('invoice-drop', 'invoice-input', 'invoice-file-name', file => { invoiceFile = file; });
+
+  document.getElementById('threshold').addEventListener('input', e => {
+    document.getElementById('threshold-val').textContent = e.target.value + '%';
+  });
+
+  document.getElementById('tolerance').addEventListener('input', e => {
+    document.getElementById('tolerance-val').textContent = e.target.value + '%';
+  });
+
+  document.getElementById('run-btn').addEventListener('click', runReconciliation);
+}
+
+function setupDropZone(zoneId, inputId, nameId, onFile) {
+  const zone = document.getElementById(zoneId);
+  const input = document.getElementById(inputId);
+  const nameEl = document.getElementById(nameId);
+
+  zone.addEventListener('click', () => input.click());
+
+  zone.addEventListener('dragover', e => {
+    e.preventDefault();
+    zone.classList.add('dragover');
+  });
+
+  zone.addEventListener('dragleave', () => {
+    zone.classList.remove('dragover');
+  });
+
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('dragover');
+    if (e.dataTransfer.files.length > 0) {
+      handleFile(e.dataTransfer.files[0]);
+    }
+  });
+
+  input.addEventListener('change', () => {
+    if (input.files.length > 0) {
+      handleFile(input.files[0]);
+    }
+  });
+
+  function handleFile(file) {
+    onFile(file);
+    nameEl.textContent = `✓ ${file.name}`;
+    nameEl.classList.remove('hidden');
+    zone.classList.add('has-file');
+    updateRunButton();
+  }
+}
+
+function updateRunButton() {
+  document.getElementById('run-btn').disabled = !(bankFile && invoiceFile);
+}
+
+async function runReconciliation() {
+  if (!bankFile || !invoiceFile) return;
+
+  const threshold = parseInt(document.getElementById('threshold').value);
+  const tolerance = parseFloat(document.getElementById('tolerance').value) / 100;
+
+  showProcessing('Running reconciliation…', 'Matching transactions and generating report');
+
+  const formData = new FormData();
+  formData.append('bank_file', bankFile);
+  formData.append('invoice_file', invoiceFile);
+  formData.append('threshold', threshold);
+  formData.append('tolerance', tolerance);
+
+  try {
+    const result = await fetch(`${API}/api/reconcile`, {
+      method: 'POST',
+      body: formData
+    });
+
+    if (!result.ok) {
+      const err = await result.json().catch(() => ({ detail: result.statusText }));
+      throw new Error(err.detail || 'Reconciliation failed');
+    }
+
+    currentResults = await result.json();
+    currentSessionId = currentResults.session_id;
+
+    // Refresh sessions list
+    sessions = await api('/api/sessions');
+
+    hideProcessing();
+    showResults();
+  } catch (e) {
+    hideProcessing();
+    alert(`Error: ${e.message}`);
+  }
+}
+
+function showResults() {
+  document.getElementById('results-panel').classList.remove('hidden');
+  document.getElementById('results-title').textContent =
+    `Results — ${currentResults.summary.match_rate}% Match Rate`;
+
+  document.getElementById('count-matched').textContent = currentResults.summary.matched_count;
+  document.getElementById('count-ubank').textContent = currentResults.summary.unmatched_bank_count;
+  document.getElementById('count-uinv').textContent = currentResults.summary.unmatched_inv_count;
+
+  activeTab = 'matched';
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === 'matched'));
+
+  renderResultsTable();
+  // Scroll to results
+  document.getElementById('results-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function switchTab(tab) {
+  activeTab = tab;
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+  renderResultsTable();
+}
+
+function renderResultsTable() {
+  if (!currentResults) return;
+
+  let data, headers, key;
+  if (activeTab === 'matched') {
+    data = currentResults.matched;
+    headers = ['Date', 'Bank Description', 'Bank Amt', 'Invoice Description', 'Inv Amt', 'Score', 'Category'];
+    key = null;
+  } else if (activeTab === 'unmatched-bank') {
+    data = currentResults.unmatched_bank;
+    headers = ['Date', 'Bank Description', 'Bank Amt', 'Best Match', 'Score', 'Reason'];
+    key = 'unmatched_bank';
+  } else {
+    data = currentResults.unmatched_invoices;
+    headers = ['Invoice Description', 'Inv Amt', 'Status'];
+    key = 'unmatched_inv';
+  }
+
+  // Sort
+  if (key && sortColumn) {
+    data = [...data].sort((a, b) => {
+      let va = a[sortColumn] || 0;
+      let vb = b[sortColumn] || 0;
+      if (typeof va === 'string') va = va.toLowerCase();
+      if (typeof vb === 'string') vb = vb.toLowerCase();
+      if (va < vb) return sortDirection === 'asc' ? -1 : 1;
+      if (va > vb) return sortDirection === 'asc' ? 1 : -1;
+      return 0;
+    });
+  }
+
+  const body = document.getElementById('results-body');
+  if (!data || data.length === 0) {
+    body.innerHTML = `<div class="empty-state"><div class="icon">✓</div><h3>No records</h3><p>This section is empty</p></div>`;
+    return;
+  }
+
+  body.innerHTML = `
+    <table class="data-table">
+      <thead>
+        <tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr>
+      </thead>
+      <tbody>
+        ${data.map(row => {
+          if (activeTab === 'matched') {
+            return `<tr>
+              <td>${escapeHtml(String(row.bank_date || '')).substring(0, 10)}</td>
+              <td>${escapeHtml(String(row.bank_desc || ''))}</td>
+              <td class="amount">${formatAmount(row.bank_amount)}</td>
+              <td>${escapeHtml(String(row.inv_desc || ''))}</td>
+              <td class="amount">${formatAmount(row.inv_amount)}</td>
+              <td><span class="score ${scoreClass(row.match_score)}">${row.match_score}%</span></td>
+              <td><span class="badge badge-matched">${escapeHtml(String(row.category || 'Other'))}</span></td>
+            </tr>`;
+          } else if (activeTab === 'unmatched-bank') {
+            return `<tr>
+              <td>${escapeHtml(String(row.bank_date || '')).substring(0, 10)}</td>
+              <td>${escapeHtml(String(row.bank_desc || ''))}</td>
+              <td class="amount">${formatAmount(row.bank_amount)}</td>
+              <td>${escapeHtml(String(row.best_inv_match || '-'))}</td>
+              <td><span class="score ${scoreClass(row.score)}">${row.score || 0}%</span></td>
+              <td><span class="badge badge-unmatched">${escapeHtml(String(row.reason || ''))}</span></td>
+            </tr>`;
+          } else {
+            return `<tr>
+              <td>${escapeHtml(String(row.inv_desc || ''))}</td>
+              <td class="amount">${formatAmount(row.inv_amount)}</td>
+              <td><span class="badge badge-error">Unmatched</span></td>
+            </tr>`;
+          }
+        }).join('')}
+      </tbody>
+    </table>
+  `;
+}
+
+function downloadCSV() {
+  if (!currentSessionId) return;
+  window.open(`${API}/api/download/csv/${currentSessionId}`, '_blank');
+}
+
+function downloadPDF() {
+  if (!currentSessionId) return;
+  window.open(`${API}/api/download/pdf/${currentSessionId}`, '_blank');
+}
+
+function clearResults() {
+  currentResults = null;
+  currentSessionId = null;
+  document.getElementById('results-panel').classList.add('hidden');
+}
+
+// ============================================================
+// HISTORY
+// ============================================================
+async function renderHistory(container) {
+  try {
+    sessions = await api('/api/sessions');
+  } catch (e) {
+    sessions = [];
+  }
+
+  container.innerHTML = `
+    <div class="results-panel">
+      <div class="results-header">
+        <h3>Session History</h3>
+        <div class="results-actions">
+          <button class="btn btn-sm btn-primary" onclick="navigateTo('new-recon')">+ New Recon</button>
+        </div>
+      </div>
+      <div class="tab-content" style="max-height: 600px; padding: 12px;">
+        ${sessions.length === 0 ? `
+          <div class="empty-state">
+            <div class="icon">☰</div>
+            <h3>No history yet</h3>
+            <p>Complete a reconciliation to see it here</p>
+          </div>
+        ` : `
+          <div class="history-list">
+            ${sessions.map(s => `
+              <div class="history-item" onclick="viewSession('${s.id}')">
+                <div class="h-date">${formatDate(s.created_at)}</div>
+                <div class="h-files">
+                  <div>${escapeHtml(s.bank_file)} → ${escapeHtml(s.invoice_file)}</div>
+                </div>
+                <div class="h-metrics">
+                  <span class="badge badge-matched">${s.matched_count} matched</span>
+                  <span class="badge badge-unmatched">${s.unmatched_bank + s.unmatched_inv} unmatched</span>
+                </div>
+                <div class="h-rate ${rateClass(s.match_rate)}">${s.match_rate}%</div>
+                <div class="h-actions">
+                  <button class="btn btn-sm btn-secondary" onclick="event.stopPropagation(); downloadSessionCSV('${s.id}')">CSV</button>
+                  <button class="btn btn-sm btn-secondary" onclick="event.stopPropagation(); downloadSessionPDF('${s.id}')">PDF</button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `}
+      </div>
+    </div>
+  `;
+}
+
+function downloadSessionCSV(id) {
+  window.open(`${API}/api/download/csv/${id}`, '_blank');
+}
+
+function downloadSessionPDF(id) {
+  window.open(`${API}/api/download/pdf/${id}`, '_blank');
+}
+
+async function viewSession(id) {
+  try {
+    const session = await api(`/api/sessions/${id}`);
+    currentSessionId = id;
+    currentResults = {
+      session_id: id,
+      summary: session.summary,
+      matched: session.summary.matched_transactions || [],
+      unmatched_bank: [],
+      unmatched_invoices: []
+    };
+
+    // Navigate to new-recon to view
+    navigateTo('new-recon');
+
+    // Show results after render
+    setTimeout(() => {
+      document.getElementById('results-panel').classList.remove('hidden');
+      document.getElementById('results-title').textContent =
+        `Session ${id.substring(0, 8)} — ${session.match_rate}% Match Rate`;
+      document.getElementById('count-matched').textContent = session.matched_count;
+      document.getElementById('count-ubank').textContent = session.unmatched_bank;
+      document.getElementById('count-uinv').textContent = session.unmatched_inv;
+      activeTab = 'matched';
+      document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === 'matched'));
+      renderResultsTable();
+    }, 100);
+  } catch (e) {
+    alert(`Session not found: ${e.message}`);
+  }
+}
+
+function navigateTo(page) {
+  document.querySelectorAll('.nav-item').forEach(n => {
+    n.classList.toggle('active', n.dataset.page === page);
+  });
+  currentPage = page;
+  document.getElementById('page-title').textContent =
+    { 'dashboard': 'Dashboard', 'new-recon': 'New Reconciliation', 'history': 'History', 'settings': 'Settings' }[page] || page;
+  renderPage();
+}
+
+// ============================================================
+// SETTINGS
+// ============================================================
+async function renderSettings(container) {
+  let config;
+  try {
+    config = await api('/api/config');
+  } catch (e) {
+    config = { default_threshold: 75, default_tolerance: 5, categories: [] };
+  }
+
+  container.innerHTML = `
+    <div class="settings-section">
+      <div class="settings-group">
+        <h3>Matching Defaults</h3>
+        <div class="setting-row">
+          <span class="setting-label">Default Threshold</span>
+          <span class="setting-value">${config.default_threshold}%</span>
+        </div>
+        <div class="setting-row">
+          <span class="setting-label">Default Amount Tolerance</span>
+          <span class="setting-value">${config.default_tolerance}%</span>
+        </div>
+        <div class="setting-row">
+          <span class="setting-label">Categories</span>
+          <span class="setting-value">${config.categories?.length || 0} configured</span>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <h3>Data Management</h3>
+        <div class="setting-row">
+          <span class="setting-label">Output Directory</span>
+          <span class="setting-value">./outputs/</span>
+        </div>
+        <div class="setting-row">
+          <span class="setting-label">Sessions Database</span>
+          <span class="setting-value">SQLite (active)</span>
+        </div>
+        <div style="margin-top: 12px;">
+          <button class="btn btn-sm btn-danger" onclick="clearAllSessions()">Clear All Sessions</button>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <h3>About</h3>
+        <div class="setting-row">
+          <span class="setting-label">Version</span>
+          <span class="setting-value">2.0.0 Pro</span>
+        </div>
+        <div class="setting-row">
+          <span class="setting-label">Engine</span>
+          <span class="setting-value">corp-recon-engine (rapidfuzz + fpdf2)</span>
+        </div>
+        <div class="setting-row">
+          <span class="setting-label">Author</span>
+          <span class="setting-value">Conrad CJ Wilson</span>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+async function clearAllSessions() {
+  if (!confirm('Delete all sessions? This cannot be undone.')) return;
+  try {
+    const all = await api('/api/sessions');
+    for (const s of all) {
+      await api(`/api/sessions/${s.id}`, { method: 'DELETE' });
+    }
+    sessions = [];
+    alert('All sessions cleared.');
+    renderHistory(document.getElementById('content'));
+  } catch (e) {
+    alert(`Error: ${e.message}`);
+  }
+}
+
+// ============================================================
+// UTILITIES
+// ============================================================
+function showProcessing(text, sub) {
+  document.getElementById('processing-text').textContent = text;
+  document.getElementById('processing-sub').textContent = sub || '';
+  document.getElementById('processing-overlay').classList.remove('hidden');
+}
+
+function hideProcessing() {
+  document.getElementById('processing-overlay').classList.add('hidden');
+}
+
+function formatDate(iso) {
+  if (!iso) return '-';
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-ZA', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+function formatAmount(val) {
+  if (val === null || val === undefined || val === '') return '-';
+  const n = parseFloat(val);
+  if (isNaN(n)) return String(val);
+  return n.toLocaleString('en-ZA', { style: 'currency', currency: 'ZAR' });
+}
+
+function rateClass(rate) {
+  if (rate >= 80) return 'score-high';
+  if (rate >= 50) return 'score-mid';
+  return 'score-low';
+}
+
+function scoreClass(score) {
+  if (score >= 80) return 'score-high';
+  if (score >= 50) return 'score-mid';
+  return 'score-low';
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+// ============================================================
+// INIT — literal values (served as static HTML, not template-rendered)
+renderPage();
+
+// Auto-refresh dashboard every 30s
+setInterval(() => {
+  if (currentPage === 'dashboard') renderDashboard(document.getElementById('content'));
+}, 30000);
+</script>
+</body>
+</html>
