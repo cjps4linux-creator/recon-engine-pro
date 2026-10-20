@@ -1,7 +1,23 @@
 # Recon Engine Pro — runtime dependencies
+#
+# NOTE: this application imports the reconciliation engine from the sibling
+# `corp-recon-engine` repository. Clone both repositories into the same
+# parent directory so the relative path resolves:
+#
+#   Projects/
+#     corp-recon-engine/
+#     recon-engine-pro/
+#
 fastapi>=0.110.0
 uvicorn>=0.29.0
 pydantic>=2.6.0
 pywebview>=5.0.0
 pdfplumber>=0.11.0
 rapidfuzz>=3.6
+
+# Imported by corp-recon-engine/recon_engine.py, which this app loads at runtime.
+gradio>=4.0
+pandas>=2.0
+fpdf2>=2.7
+pytesseract>=0.3.10
+pymupdf>=1.24.0
