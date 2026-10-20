@@ -4,6 +4,7 @@
 
 <p align="center">
   <a href="https://github.com/cjps4linux-creator/recon-engine-pro/actions/workflows/ci.yml"><img src="https://github.com/cjps4linux-creator/recon-engine-pro/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/cjps4linux-creator/recon-engine-pro/releases/tag/v2.0.0"><img src="https://img.shields.io/badge/release-v2.0.0-0a7563" alt="Release v2.0.0"></a>
   <img src="https://img.shields.io/badge/license-MIT-0a7563" alt="License: MIT">
   <img src="https://img.shields.io/badge/python-3.11%2B-3776ab" alt="Python 3.11+">
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-8a5800" alt="Platforms">
