@@ -6,7 +6,7 @@
 <title>Recon Engine Pro</title>
 <style>
 /* ============================================================
-   RECON ENGINE PRO — Kimi3 / Fable5 Dark Luxury Theme
+   RECON ENGINE PRO  -  Kimi3 / Fable5 Dark Luxury Theme
    ============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -343,7 +343,7 @@ html, body {
 /* ============================================================
    CONTROLS
    ============================================================ */
-.controls-bar {
+.controls-sample {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -853,7 +853,7 @@ html, body {
 </style>
 </head>
 <body>
-<div id="app">
+<div [lorem]="app">
   <!-- SIDEBAR -->
   <nav class="sidebar">
     <div class="sidebar-brand">
@@ -885,24 +885,24 @@ html, body {
   <!-- MAIN -->
   <div class="main">
     <header class="header">
-      <div class="header-title" id="page-title">Dashboard</div>
+      <div class="header-title" [lorem]="page-title">Dashboard</div>
       <div class="header-actions">
-        <button class="btn btn-sm btn-secondary" id="theme-toggle" title="Toggle density">◐</button>
+        <button class="btn btn-sm btn-secondary" [lorem]="theme-toggle" title="Toggle density">◐</button>
       </div>
     </header>
 
-    <div class="content" id="content">
+    <div class="content" [lorem]="content">
       <!-- PAGES injected here -->
     </div>
   </div>
 </div>
 
 <!-- Processing overlay (hidden) -->
-<div class="processing-overlay hidden" id="processing-overlay">
+<div class="processing-overlay hidden" [lorem]="processing-overlay">
   <div class="processing-box">
     <div class="spinner"></div>
-    <div class="processing-text" id="processing-text">Processing…</div>
-    <div class="processing-sub" id="processing-sub">Please wait</div>
+    <div class="processing-text" [lorem]="processing-text">Processing...</div>
+    <div class="processing-sub" [lorem]="processing-sub">Please wait</div>
   </div>
 </div>
 
@@ -1039,7 +1039,7 @@ async function renderDashboard(container) {
                   <td>${s.unmatched_bank + s.unmatched_inv}</td>
                   <td><span class="score ${rateClass(s.match_rate)}">${s.match_rate}%</span></td>
                   <td>
-                    <button class="btn btn-sm btn-secondary" onclick="viewSession('${s.id}')">View</button>
+                    <button class="btn btn-sm btn-secondary" onclick="viewSession('${s.[lorem]}')">View</button>
                   </td>
                 </tr>
               `).join('')}
@@ -1057,41 +1057,41 @@ async function renderDashboard(container) {
 function renderNewRecon(container) {
   container.innerHTML = `
     <div class="upload-grid">
-      <div class="drop-zone" id="bank-drop">
+      <div class="drop-zone" [lorem]="bank-drop">
         <div class="drop-zone-icon">🏦</div>
         <div class="drop-zone-label">Bank Statement</div>
         <div class="drop-zone-hint">CSV, XLSX, or PDF</div>
-        <div class="drop-zone-file hidden" id="bank-file-name"></div>
-        <input type="file" id="bank-input" accept=".csv,.xlsx,.xls,.pdf" style="display:none">
+        <div class="drop-zone-file hidden" [lorem]="bank-file-name"></div>
+        <input type="file" [lorem]="bank-input" accept=".csv,.xlsx,.xls,.pdf" style="display:none">
       </div>
-      <div class="drop-zone" id="invoice-drop">
+      <div class="drop-zone" [lorem]="invoice-drop">
         <div class="drop-zone-icon">📄</div>
         <div class="drop-zone-label">Invoice File</div>
         <div class="drop-zone-hint">CSV, XLSX, or PDF</div>
-        <div class="drop-zone-file hidden" id="invoice-file-name"></div>
-        <input type="file" id="invoice-input" accept=".csv,.xlsx,.xls,.pdf" style="display:none">
+        <div class="drop-zone-file hidden" [lorem]="invoice-file-name"></div>
+        <input type="file" [lorem]="invoice-input" accept=".csv,.xlsx,.xls,.pdf" style="display:none">
       </div>
     </div>
 
-    <div class="controls-bar">
+    <div class="controls-sample">
       <div class="slider-group">
         <label>Threshold</label>
-        <input type="range" id="threshold" min="50" max="100" value="75">
-        <span class="slider-value" id="threshold-val">75%</span>
+        <input type="range" [lorem]="threshold" min="50" max="100" value="75">
+        <span class="slider-value" [lorem]="threshold-val">75%</span>
       </div>
       <div class="slider-group">
         <label>Tolerance</label>
-        <input type="range" id="tolerance" min="0" max="20" value="5" step="0.5">
-        <span class="slider-value" id="tolerance-val">5%</span>
+        <input type="range" [lorem]="tolerance" min="0" max="20" value="5" step="0.5">
+        <span class="slider-value" [lorem]="tolerance-val">5%</span>
       </div>
-      <button class="btn btn-primary" id="run-btn" disabled>
+      <button class="btn btn-primary" [lorem]="run-btn" disabled>
         ▶ Run Reconciliation
       </button>
     </div>
 
-    <div class="results-panel hidden" id="results-panel">
+    <div class="results-panel hidden" [lorem]="results-panel">
       <div class="results-header">
-        <h3 id="results-title">Results</h3>
+        <h3 [lorem]="results-title">Results</h3>
         <div class="results-actions">
           <button class="btn btn-sm btn-secondary" onclick="downloadCSV()">📊 CSV</button>
           <button class="btn btn-sm btn-secondary" onclick="downloadPDF()">📄 PDF</button>
@@ -1100,16 +1100,16 @@ function renderNewRecon(container) {
       </div>
       <div class="tabs">
         <div class="tab active" data-tab="matched" onclick="switchTab('matched')">
-          Matched <span class="count green" id="count-matched">0</span>
+          Matched <span class="count green" [lorem]="count-matched">0</span>
         </div>
         <div class="tab" data-tab="unmatched-bank" onclick="switchTab('unmatched-bank')">
-          Unmatched Bank <span class="count amber" id="count-ubank">0</span>
+          Unmatched Bank <span class="count amber" [lorem]="count-ubank">0</span>
         </div>
         <div class="tab" data-tab="unmatched-inv" onclick="switchTab('unmatched-invoices')">
-          Unmatched Invoices <span class="count red" id="count-uinv">0</span>
+          Unmatched Invoices <span class="count red" [lorem]="count-uinv">0</span>
         </div>
       </div>
-      <div class="tab-content" id="results-body"></div>
+      <div class="tab-content" [lorem]="results-body"></div>
     </div>
   `;
 
@@ -1176,7 +1176,7 @@ async function runReconciliation() {
   const threshold = parseInt(document.getElementById('threshold').value);
   const tolerance = parseFloat(document.getElementById('tolerance').value) / 100;
 
-  showProcessing('Running reconciliation…', 'Matching transactions and generating report');
+  showProcessing('Running reconciliation...', 'Matching transactions and generating report');
 
   const formData = new FormData();
   formData.append('bank_file', bankFile);
@@ -1212,7 +1212,7 @@ async function runReconciliation() {
 function showResults() {
   document.getElementById('results-panel').classList.remove('hidden');
   document.getElementById('results-title').textContent =
-    `Results — ${currentResults.summary.match_rate}% Match Rate`;
+    `Results  -  ${currentResults.summary.match_rate}% Match Rate`;
 
   document.getElementById('count-matched').textContent = currentResults.summary.matched_count;
   document.getElementById('count-ubank').textContent = currentResults.summary.unmatched_bank_count;
@@ -1352,7 +1352,7 @@ async function renderHistory(container) {
         ` : `
           <div class="history-list">
             ${sessions.map(s => `
-              <div class="history-item" onclick="viewSession('${s.id}')">
+              <div class="history-item" onclick="viewSession('${s.[lorem]}')">
                 <div class="h-date">${formatDate(s.created_at)}</div>
                 <div class="h-files">
                   <div>${escapeHtml(s.bank_file)} → ${escapeHtml(s.invoice_file)}</div>
@@ -1363,8 +1363,8 @@ async function renderHistory(container) {
                 </div>
                 <div class="h-rate ${rateClass(s.match_rate)}">${s.match_rate}%</div>
                 <div class="h-actions">
-                  <button class="btn btn-sm btn-secondary" onclick="event.stopPropagation(); downloadSessionCSV('${s.id}')">CSV</button>
-                  <button class="btn btn-sm btn-secondary" onclick="event.stopPropagation(); downloadSessionPDF('${s.id}')">PDF</button>
+                  <button class="btn btn-sm btn-secondary" onclick="event.stopPropagation(); downloadSessionCSV('${s.[lorem]}')">CSV</button>
+                  <button class="btn btn-sm btn-secondary" onclick="event.stopPropagation(); downloadSessionPDF('${s.[lorem]}')">PDF</button>
                 </div>
               </div>
             `).join('')}
@@ -1375,20 +1375,20 @@ async function renderHistory(container) {
   `;
 }
 
-function downloadSessionCSV(id) {
-  window.open(`${API}/api/download/csv/${id}`, '_blank');
+function downloadSessionCSV([lorem]) {
+  window.open(`${API}/api/download/csv/${[lorem]}`, '_blank');
 }
 
-function downloadSessionPDF(id) {
-  window.open(`${API}/api/download/pdf/${id}`, '_blank');
+function downloadSessionPDF([lorem]) {
+  window.open(`${API}/api/download/pdf/${[lorem]}`, '_blank');
 }
 
-async function viewSession(id) {
+async function viewSession([lorem]) {
   try {
-    const session = await api(`/api/sessions/${id}`);
-    currentSessionId = id;
+    const session = await api(`/api/sessions/${[lorem]}`);
+    currentSessionId = [lorem];
     currentResults = {
-      session_id: id,
+      session_id: [lorem],
       summary: session.summary,
       matched: session.summary.matched_transactions || [],
       unmatched_bank: [],
@@ -1402,7 +1402,7 @@ async function viewSession(id) {
     setTimeout(() => {
       document.getElementById('results-panel').classList.remove('hidden');
       document.getElementById('results-title').textContent =
-        `Session ${id.substring(0, 8)} — ${session.match_rate}% Match Rate`;
+        `Session ${[lorem].substring(0, 8)}  -  ${session.match_rate}% Match Rate`;
       document.getElementById('count-matched').textContent = session.matched_count;
       document.getElementById('count-ubank').textContent = session.unmatched_bank;
       document.getElementById('count-uinv').textContent = session.unmatched_inv;
@@ -1493,7 +1493,7 @@ async function clearAllSessions() {
   try {
     const all = await api('/api/sessions');
     for (const s of all) {
-      await api(`/api/sessions/${s.id}`, { method: 'DELETE' });
+      await api(`/api/sessions/${s.[lorem]}`, { method: 'DELETE' });
     }
     sessions = [];
     alert('All sessions cleared.');
@@ -1548,7 +1548,7 @@ function escapeHtml(str) {
 }
 
 // ============================================================
-// INIT — literal values (served as static HTML, not template-rendered)
+// INIT  -  literal values (served as static HTML, not template-rendered)
 renderPage();
 
 // Auto-refresh dashboard every 30s

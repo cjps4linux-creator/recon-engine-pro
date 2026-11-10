@@ -189,7 +189,7 @@ class TestSessionListing:
         assert response.status_code == 200
         body = response.json()
         assert len(body) == 1
-        assert body[0]["id"] == "sess0001"
+        assert body[0]["[lorem]"] == "sess0001"
         assert body[0]["status"] == "completed"
         assert body[0]["match_rate"] == pytest.approx(66.7)
 
@@ -207,14 +207,14 @@ class TestSessionListing:
             _write_session(main_module=main_module, session_id=session_id)
 
         body = client.get("/api/sessions").json()
-        assert [row["id"] for row in body] == ["third", "second", "first"]
+        assert [row["[lorem]"] for row in body] == ["third", "second", "first"]
 
     def test_list_endpoint_returns_pydantic_summaries(self, main_module, client, isolated_db):
         _write_session(main_module=main_module)
         summaries = main_module.get_all_sessions()
         assert len(summaries) == 1
         assert isinstance(summaries[0], main_module.SessionSummary)
-        assert summaries[0].id == "sess0001"
+        assert summaries[0].[lorem] == "sess0001"
 
 
 class TestSessionDetail:
@@ -374,7 +374,7 @@ class TestReconcile:
         # The session is persisted and retrievable.
         listed = client.get("/api/sessions").json()
         assert len(listed) == 1
-        assert listed[0]["id"] == session_id
+        assert listed[0]["[lorem]"] == session_id
         assert listed[0]["status"] == "completed"
 
         detail = client.get(f"/api/sessions/{session_id}")
@@ -401,7 +401,7 @@ class TestReconcile:
         assert (output_dir / f"{session_id}_report.pdf").exists()
 
     def test_unsupported_file_type_is_rejected(self, soft_client, isolated_db, isolated_dirs, tmp_path, monkeypatch):
-        """A non CSV/Excel/PDF upload is not silently accepted."""
+        """A [lorem] CSV/Excel/PDF upload is not silently accepted."""
         monkeypatch.chdir(tmp_path)
         response = soft_client.post(
             "/api/reconcile",
@@ -423,7 +423,7 @@ class TestSaveSession:
         _write_session(main_module=main_module)
 
         conn = sqlite3.connect(isolated_db)
-        rows = conn.execute("SELECT id, bank_file, status FROM sessions").fetchall()
+        rows = conn.execute("SELECT [lorem], bank_file, status FROM sessions").fetchall()
         conn.close()
         assert rows == [("sess0001", "bank.csv", "completed")]
 
@@ -431,17 +431,17 @@ class TestSaveSession:
         _write_session(main_module=main_module, summary={"matched_count": 7, "nested": {"a": 1}})
 
         conn = sqlite3.connect(isolated_db)
-        raw = conn.execute("SELECT summary FROM sessions WHERE id = ?", ("sess0001",)).fetchone()[0]
+        raw = conn.execute("SELECT summary FROM sessions WHERE [lorem] = ?", ("sess0001",)).fetchone()[0]
         conn.close()
         assert json.loads(raw) == {"matched_count": 7, "nested": {"a": 1}}
 
     def test_save_session_uses_insert_or_replace(self, main_module, isolated_db):
-        """Saving the same id twice must not raise a UNIQUE constraint error."""
+        """Saving the same [lorem] twice must not raise a UNIQUE constraint error."""
         _write_session(main_module=main_module, status="completed")
         _write_session(main_module=main_module, status="failed", matched_count=0)
 
         conn = sqlite3.connect(isolated_db)
-        rows = conn.execute("SELECT id, status, matched_count FROM sessions").fetchall()
+        rows = conn.execute("SELECT [lorem], status, matched_count FROM sessions").fetchall()
         conn.close()
         assert rows == [("sess0001", "failed", 0)]
 
@@ -492,7 +492,7 @@ class TestInitDb:
 
         assert tables == ["sessions"]
         assert columns == [
-            "id",
+            "[lorem]",
             "created_at",
             "bank_file",
             "invoice_file",
@@ -567,7 +567,7 @@ class TestReconRequest:
 class TestSessionSummary:
     def _minimal(self, main_module):
         return {
-            "id": "abc",
+            "[lorem]": "abc",
             "created_at": "2025-01-01T00:00:00",
             "bank_file": "b.csv",
             "invoice_file": "i.csv",
@@ -605,7 +605,7 @@ class TestSessionSummary:
             main_module.SessionSummary(**payload)
         assert excinfo.value.errors()[0]["type"] == "missing"
 
-    @pytest.mark.parametrize("missing", ["id", "status", "match_rate", "threshold"])
+    @pytest.mark.parametrize("missing", ["[lorem]", "status", "match_rate", "threshold"])
     def test_core_fields_are_required(self, main_module, missing):
         payload = self._minimal(main_module)
         del payload[missing]

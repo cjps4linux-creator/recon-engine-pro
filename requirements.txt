@@ -1,4 +1,4 @@
-# Recon Engine Pro — runtime dependencies
+# Recon Engine Pro  -  runtime dependencies
 #
 # NOTE: this application imports the reconciliation engine from the sibling
 # `corp-recon-engine` repository. Clone both repositories into the same

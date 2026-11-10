@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Recon Engine Pro — Desktop Launcher
+Recon Engine Pro  -  Desktop Launcher
 =====================================
 Starts the FastAPI backend and opens the PyWebView desktop window.
 """
@@ -60,14 +60,14 @@ def wait_for_server(timeout=30):
 # MAIN
 # ============================================================
 if __name__ == "__main__":
-    print("Starting Recon Engine Pro…")
+    print("Starting Recon Engine Pro...")
 
     # Start backend
     backend_proc = start_backend()
     print(f"Backend PID: {backend_proc.pid}")
 
     # Wait for ready
-    print("Waiting for backend to start…")
+    print("Waiting for backend to start...")
     if not wait_for_server():
         print("ERROR: Backend failed to start within timeout")
         sys.exit(1)
@@ -94,7 +94,7 @@ if __name__ == "__main__":
 
         def on_closing():
             # Graceful shutdown
-            print("Shutting down…")
+            print("Shutting down...")
             try:
                 backend_proc.terminate()
                 backend_proc.wait(timeout=5)
