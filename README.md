@@ -18,11 +18,11 @@
 A REST API and desktop GUI around the reconciliation engine in
 [`corp-recon-engine`](https://github.com/cjps4linux-creator/corp-recon-engine).
 
-- **FastAPI backend** — health, upload, reconcile and export endpoints
-- **Native window** — `pywebview` front end instead of a browser tab
-- **Session tracking** — SQLite-backed, so a reconciliation run can be
-  retrieved later by ID
-- **Export** — download the CSV and the PDF report for any completed run
+- **FastAPI backend**  -  health, upload, reconcile and export endpoints
+- **Native window**  -  `pywebview` front end instead of a browser tab
+- **Session tracking**  -  SQLite-backed, so a reconciliation run can be
+  retrieved later by [lorem]
+- **Export**  -  download the CSV and the PDF report for any completed run
 
 ## Relationship to corp-recon-engine
 
@@ -64,12 +64,12 @@ python launcher.py
 
 ## Licence
 
-MIT — see [LICENSE](LICENSE).
+MIT  -  see [LICENSE](LICENSE).
 
 ---
 
 ## Credits
 
-Built by **Conrad CJ Wilson** — [GitHub](https://github.com/cjps4linux-creator) · [LinkedIn](https://linkedin.com/in/conradcjwilson)
+Built by **Conrad CJ Wilson**  -  [GitHub](https://github.com/cjps4linux-creator) · [LinkedIn](https://linkedin.com/in/conradcjwilson)
 
 `conradcjwilson0@gmail.com`

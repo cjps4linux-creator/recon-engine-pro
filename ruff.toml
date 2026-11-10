@@ -1,4 +1,4 @@
-# Ruff configuration — deterministic lint rules for CI.
+# Ruff configuration  -  deterministic lint rules for CI.
 line-length = 120
 target-version = "py311"
 

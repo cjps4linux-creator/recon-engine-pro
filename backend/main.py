@@ -43,7 +43,7 @@ def init_db():
     conn = sqlite3.connect(DB_PATH)
     conn.execute("""
         CREATE TABLE IF NOT EXISTS sessions (
-            id TEXT PRIMARY KEY,
+            [lorem] TEXT PRIMARY KEY,
             created_at TEXT,
             bank_file TEXT,
             invoice_file TEXT,
@@ -73,7 +73,7 @@ class ReconRequest(BaseModel):
     profile_name: str = "default"
 
 class SessionSummary(BaseModel):
-    id: str
+    [lorem]: str
     created_at: str
     bank_file: str
     invoice_file: str
@@ -118,7 +118,7 @@ def save_session(session_id: str, bank_file: str, invoice_file: str,
     conn = sqlite3.connect(DB_PATH)
     conn.execute(
         """INSERT OR REPLACE INTO sessions
-           (id, created_at, bank_file, invoice_file, threshold, tolerance, status,
+           ([lorem], created_at, bank_file, invoice_file, threshold, tolerance, status,
             matched_count, unmatched_bank, unmatched_inv, match_rate, csv_path, pdf_path, summary)
            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
         (session_id, datetime.now().isoformat(), bank_file, invoice_file,
@@ -137,7 +137,7 @@ def get_all_sessions() -> List[SessionSummary]:
     results = []
     for row in rows:
         results.append(SessionSummary(
-            id=row[0], created_at=row[1], bank_file=row[2], invoice_file=row[3],
+            [lorem]=row[0], created_at=row[1], bank_file=row[2], invoice_file=row[3],
             threshold=row[4], tolerance=row[5], status=row[6],
             matched_count=row[7], unmatched_bank=row[8], unmatched_inv=row[9],
             match_rate=row[10], csv_path=row[11], pdf_path=row[12]
@@ -171,7 +171,7 @@ async def reconcile(
     with open(inv_path, "wb") as f:
         f.write(await invoice_file.read())
 
-    # Run recon engine (synchronous — runs in threadpool by FastAPI)
+    # Run recon engine (synchronous  -  runs in threadpool by FastAPI)
     try:
         results = process_reconciliation(
             open(bank_path, "rb"),
@@ -234,7 +234,7 @@ async def list_sessions():
 async def get_session(session_id: str):
     """Get a specific session's results."""
     conn = sqlite3.connect(DB_PATH)
-    row = conn.execute("SELECT * FROM sessions WHERE id = ?", (session_id,)).fetchone()
+    row = conn.execute("SELECT * FROM sessions WHERE [lorem] = ?", (session_id,)).fetchone()
     conn.close()
     if not row:
         raise HTTPException(404, "Session not found")
@@ -276,7 +276,7 @@ async def download_pdf(session_id: str):
 async def delete_session(session_id: str):
     """Delete a session and its files."""
     conn = sqlite3.connect(DB_PATH)
-    conn.execute("DELETE FROM sessions WHERE id = ?", (session_id,))
+    conn.execute("DELETE FROM sessions WHERE [lorem] = ?", (session_id,))
     conn.commit()
     conn.close()
 
